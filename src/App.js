@@ -50,6 +50,30 @@ class App extends Component {
       padding: '8px'
     };
 
+    let person = null;
+
+    if ( this.state.showPersons ) {
+      person = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            click={() => this.switchNameHandler("xyz")}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind(this, "abc")}
+            change={this.nameChangedHandler}
+          > My hobbie: Racing </Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1> Hello World </h1>
@@ -63,25 +87,7 @@ class App extends Component {
           style={style}
         >Toggle Name</button>
 
-        { this.state.showPersons ?
-            <div>
-              <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}
-                click={() => this.switchNameHandler("xyz")}
-              />
-              <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-                click={this.switchNameHandler.bind(this, "abc")}
-                change={this.nameChangedHandler}
-              > My hobbie: Racing </Person>
-              <Person
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}
-              />
-            </div> : null
-        }
+        {person}
       </div>
     );
     // OR
