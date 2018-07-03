@@ -13,17 +13,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // Don't do this, this.state.persons[0].name = "yadav";
-    this.setState( {
-      persons: [
-        { name: newName, age: "26" },
-        { name: "min", age: "16" },
-        { name: "max", age: "100" }
-      ]
-    } )
-  }
-
   toogleNameHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({
@@ -41,6 +30,12 @@ class App extends Component {
     } )
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
+
   render() {
     // inline style.
     const style= {
@@ -55,10 +50,11 @@ class App extends Component {
     if ( this.state.showPersons ) {
       person = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person
               name={person.name}
-              age={person.age} />
+              age={person.age}
+              click={() => this.deletePersonHandler(index)} />
           })}
         </div>
       )
@@ -69,10 +65,6 @@ class App extends Component {
         <h1> Hello World </h1>
 
         <button
-          onClick={() => this.switchNameHandler("Changed!")}
-          style={style}
-        >Switch Name</button>
-        <button
           onClick={this.toogleNameHandler}
           style={style}
         >Toggle Name</button>
@@ -80,8 +72,6 @@ class App extends Component {
         {person}
       </div>
     );
-    // OR
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null,'Hello World'));
   }
 }
 
