@@ -28,12 +28,12 @@ class App extends Component {
       <div className="App">
         <h1> Hello World </h1>
 
-        <button onClick={this.switchNameHandler.bind(this, "Changed!")}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler("Changed!")}>Switch Name</button>
 
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, "xyz")}
+          click={() => this.switchNameHandler("xyz")}
         />
         <Person
           name={this.state.persons[1].name}
