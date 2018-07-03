@@ -9,7 +9,8 @@ class App extends Component {
       { name: "min", age: "16" },
       { name: "max", age: "20" }
     ],
-    otherState: "Some other state"
+    otherState: "Some other state",
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -21,6 +22,13 @@ class App extends Component {
         { name: "max", age: "100" }
       ]
     } )
+  }
+
+  toogleNameHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons: !doesShow
+    });
   }
 
   nameChangedHandler = (event) => {
@@ -50,22 +58,30 @@ class App extends Component {
           onClick={() => this.switchNameHandler("Changed!")}
           style={style}
         >Switch Name</button>
+        <button
+          onClick={this.toogleNameHandler}
+          style={style}
+        >Toggle Name</button>
 
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={() => this.switchNameHandler("xyz")}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, "abc")}
-          change={this.nameChangedHandler}
-        > My hobbie: Racing </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        { this.state.showPersons ?
+            <div>
+              <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                click={() => this.switchNameHandler("xyz")}
+              />
+              <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                click={this.switchNameHandler.bind(this, "abc")}
+                change={this.nameChangedHandler}
+              > My hobbie: Racing </Person>
+              <Person
+                name={this.state.persons[2].name}
+                age={this.state.persons[2].age}
+              />
+            </div> : null
+        }
       </div>
     );
     // OR
