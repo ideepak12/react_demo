@@ -53,7 +53,8 @@ class App extends Component {
   render() {
     // inline style.
     const style= {
-      backgroundColor: 'grey',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '2px solid blue',
       padding: '8px'
@@ -73,7 +74,9 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)} />
           })}
         </div>
-      )
+      );
+
+      style.backgroundColor = 'red';
     }
 
     return (
