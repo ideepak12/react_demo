@@ -2,6 +2,10 @@ import React from 'react';
 import classes from './Person.css';
 
 const person = (props) => {
+	const rand = Math.random();
+	if (rand > 0.8) {
+		throw new Error( "Something is wrong!!!" );
+	}
 
 	return (
 		<div className={classes.Person}>
