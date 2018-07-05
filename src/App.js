@@ -77,11 +77,22 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
+
+    }
+
+    // let para_classes = ['red', 'bold'];
+    const para_classes = [];
+    if (this.state.persons.length <= 2) {
+      para_classes.push('red'); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      para_classes.push('bold'); // classes = ['red', 'bold']
     }
 
     return (
       <div className="App">
         <h1> Hello World </h1>
+        <p className={para_classes.join(' ')}> What a great day dear!!! </p>
 
         <button
           onClick={this.toogleNameHandler}
