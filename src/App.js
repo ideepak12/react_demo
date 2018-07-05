@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from  './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -75,19 +75,21 @@ class App extends Component {
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
     // let para_classes = ['red', 'bold'];
     const para_classes = [];
     if (this.state.persons.length <= 2) {
-      para_classes.push('red'); // classes = ['red']
+      para_classes.push( classes.red ); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      para_classes.push('bold'); // classes = ['red', 'bold']
+      para_classes.push( classes.bold ); // classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1> Hello World </h1>
         <p className={para_classes.join(' ')}> What a great day dear!!! </p>
 
